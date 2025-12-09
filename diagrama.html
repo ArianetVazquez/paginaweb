@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Contexto - Sistema Sitio Web</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: #0d47a1;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header h2 {
+            font-size: 20px;
+            font-weight: normal;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        .diagram-container {
+            position: relative;
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            min-height: 600px;
+            overflow: hidden;
+        }
+        
+        /* Sistema central */
+        .central-system {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(13, 71, 161, 0.3);
+            z-index: 10;
+            border: 8px solid white;
+            outline: 4px solid #0d47a1;
+        }
+        
+        .central-system h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .central-system p {
+            font-size: 16px;
+            max-width: 80%;
+            line-height: 1.4;
+        }
+        
+        /* Actores externos */
+        .actor {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background-color: white;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 15px;
+            transition: all 0.3s ease;
+            border: 3px solid;
+            z-index: 5;
+        }
+        
+        .actor:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .actor-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        
+        .actor-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .actor-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.3;
+        }
+        
+        /* Posicionamiento de actores */
+        .actor-1 {
+            top: 10%;
+            left: 10%;
+            border-color: #4CAF50;
+            background-color: #E8F5E9;
+        }
+        
+        .actor-2 {
+            top: 10%;
+            right: 10%;
+            border-color: #2196F3;
+            background-color: #E3F2FD;
+        }
+        
+        .actor-3 {
+            bottom: 10%;
+            left: 10%;
+            border-color: #FF9800;
+            background-color: #FFF3E0;
+        }
+        
+        .actor-4 {
+            bottom: 10%;
+            right: 10%;
+            border-color: #9C27B0;
+            background-color: #F3E5F5;
+        }
+        
+        .actor-5 {
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            border-color: #00BCD4;
+            background-color: #E0F7FA;
+        }
+        
+        .actor-6 {
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            border-color: #795548;
+            background-color: #EFEBE9;
+        }
+        
+        /* Líneas de conexión */
+        .connection-line {
+            position: absolute;
+            background-color: #0d47a1;
+            z-index: 1;
+        }
+        
+        .line-1 {
+            top: 100px;
+            left: 200px;
+            width: 200px;
+            height: 4px;
+            transform: rotate(30deg);
+        }
+        
+        .line-2 {
+            top: 100px;
+            right: 200px;
+            width: 200px;
+            height: 4px;
+            transform: rotate(-30deg);
+        }
+        
+        .line-3 {
+            bottom: 100px;
+            left: 200px;
+            width: 200px;
+            height: 4px;
+            transform: rotate(-30deg);
+        }
+        
+        .line-4 {
+            bottom: 100px;
+            right: 200px;
+            width: 200px;
+            height: 4px;
+            transform: rotate(30deg);
+        }
+        
+        .line-5 {
+            top: 300px;
+            left: 200px;
+            width: 180px;
+            height: 4px;
+            transform: rotate(0deg);
+        }
+        
+        .line-6 {
+            top: 300px;
+            right: 200px;
+            width: 180px;
+            height: 4px;
+            transform: rotate(0deg);
+        }
+        
+        /* Flechas */
+        .arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            z-index: 2;
+        }
+        
+        .arrow-1 {
+            top: 170px;
+            left: 380px;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent #0d47a1;
+            transform: rotate(30deg);
+        }
+        
+        .arrow-2 {
+            top: 170px;
+            right: 380px;
+            border-width: 10px 15px 10px 0;
+            border-color: transparent #0d47a1 transparent transparent;
+            transform: rotate(-30deg);
+        }
+        
+        .arrow-3 {
+            bottom: 170px;
+            left: 380px;
+            border-width: 10px 15px 10px 0;
+            border-color: transparent #0d47a1 transparent transparent;
+            transform: rotate(30deg);
+        }
+        
+        .arrow-4 {
+            bottom: 170px;
+            right: 380px;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent #0d47a1;
+            transform: rotate(-30deg);
+        }
+        
+        .arrow-5 {
+            top: 300px;
+            left: 380px;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent #0d47a1;
+        }
+        
+        .arrow-6 {
+            top: 300px;
+            right: 380px;
+            border-width: 10px 15px 10px 0;
+            border-color: transparent #0d47a1 transparent transparent;
+        }
+        
+        /* Leyenda */
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+            border: 2px solid;
+        }
+        
+        .flow-direction {
+            margin-top: 30px;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 1024px) {
+            .diagram-container {
+                min-height: 800px;
+            }
+            
+            .actor {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .central-system {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .diagram-container {
+                min-height: 1000px;
+                padding: 20px;
+            }
+            
+            .central-system {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 0 auto 40px;
+                width: 200px;
+                height: 200px;
+            }
+            
+            .actor {
+                position: relative;
+                width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+                left: auto !important;
+                right: auto !important;
+                top: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+            }
+            
+            .connection-line, .arrow {
+                display: none;
+            }
+        }
+    </style>
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>DIAGRAMA DE CONTEXTO DEL SISTEMA</h1>
+            <h2>Sitio Web Institucional - CBT No.1 "Gabino Barreda"</h2>
+            <p>Representación gráfica de actores externos y sus interacciones con el sistema central</p>
+        </div>
+        
+        <div class="diagram-container">
+            <!-- Sistema central -->
+            <div class="central-system">
+                <div class="actor-icon">
+                    <i class="fas fa-globe-americas" style="font-size: 48px; margin-bottom: 15px;"></i>
+                </div>
+                <h3>SISTEMA CENTRAL</h3>
+                <p>Sitio Web Institucional CBT</p>
+                <p>"Gabino Barreda"</p>
+            </div>
+            
+            <!-- Líneas de conexión -->
+            <div class="connection-line line-1"></div>
+            <div class="connection-line line-2"></div>
+            <div class="connection-line line-3"></div>
+            <div class="connection-line line-4"></div>
+            <div class="connection-line line-5"></div>
+            <div class="connection-line line-6"></div>
+            
+            <!-- Flechas de dirección -->
+            <div class="arrow arrow-1"></div>
+            <div class="arrow arrow-2"></div>
+            <div class="arrow arrow-3"></div>
+            <div class="arrow arrow-4"></div>
+            <div class="arrow arrow-5"></div>
+            <div class="arrow arrow-6"></div>
+            
+            <!-- Actores externos -->
+            
+            <!-- Actor 1: Administradores -->
+            <div class="actor actor-1">
+                <div class="actor-icon" style="color: #4CAF50;">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <div class="actor-title">ADMINISTRADORES</div>
+                <div class="actor-desc">
+                    Personal de Control Escolar/Comunicación<br>
+                    <strong>Interacción:</strong> Gestiona contenidos, actualiza información<br>
+                    <strong>Permisos:</strong> Acceso total al sistema
+                </div>
+            </div>
+            
+            <!-- Actor 2: Docentes -->
+            <div class="actor actor-2">
+                <div class="actor-icon" style="color: #2196F3;">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="actor-title">DOCENTES</div>
+                <div class="actor-desc">
+                    Personal docente del plantel<br>
+                    <strong>Interacción:</strong> Consulta información, solicita publicación<br>
+                    <strong>Permisos:</strong> Lectura general + envío solicitudes
+                </div>
+            </div>
+            
+            <!-- Actor 3: Alumnos -->
+            <div class="actor actor-3">
+                <div class="actor-icon" style="color: #FF9800;">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="actor-title">ALUMNOS</div>
+                <div class="actor-desc">
+                    Comunidad estudiantil activa<br>
+                    <strong>Interacción:</strong> Consulta información académica<br>
+                    <strong>Permisos:</strong> Solo lectura, acceso público
+                </div>
+            </div>
+            
+            <!-- Actor 4: Padres de familia -->
+            <div class="actor actor-4">
+                <div class="actor-icon" style="color: #9C27B0;">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="actor-title">PADRES DE FAMILIA</div>
+                <div class="actor-desc">
+                    Tutores de estudiantes<br>
+                    <strong>Interacción:</strong> Consulta información institucional<br>
+                    <strong>Permisos:</strong> Solo lectura, acceso público
+                </div>
+            </div>
+            
+            <!-- Actor 5: Público externo -->
+            <div class="actor actor-5">
+                <div class="actor-icon" style="color: #00BCD4;">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="actor-title">PÚBLICO EXTERNO</div>
+                <div class="actor-desc">
+                    Prospectos, Egresados, Otras Instituciones<br>
+                    <strong>Interacción:</strong> Consulta oferta educativa<br>
+                    <strong>Permisos:</strong> Solo lectura, acceso público
+                </div>
+            </div>
+            
+            <!-- Actor 6: Servidor web -->
+            <div class="actor actor-6">
+                <div class="actor-icon" style="color: #795548;">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="actor-title">SERVIDOR WEB</div>
+                <div class="actor-desc">
+                    Hosting / Alojamiento web<br>
+                    <strong>Interacción:</strong> Aloja el sitio, gestiona BD<br>
+                    <strong>Conexión:</strong> HTTPS, FTP, SSH
+                </div>
+            </div>
+        </div>
+        
+        <div class="flow-direction">
+            <p><i class="fas fa-arrow-right" style="color: #0d47a1; margin-right: 5px;"></i> 
+            Flechas indican dirección principal del flujo de información (bidireccional en algunos casos)</p>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item" style="background-color: #E8F5E9;">
+                <div class="legend-color" style="background-color: #E8F5E9; border-color: #4CAF50;"></div>
+                <span>Actores Humanos (Usuarios)</span>
+            </div>
+            <div class="legend-item" style="background-color: #EFEBE9;">
+                <div class="legend-color" style="background-color: #EFEBE9; border-color: #795548;"></div>
+                <span>Actores Técnicos (Sistemas)</span>
+            </div>
+            <div class="legend-item" style="background-color: #E3F2FD;">
+                <div class="legend-color" style="background-color: #E3F2FD; border-color: #2196F3;"></div>
+                <span>Flujo de Información</span>
+            </div>
+            <div class="legend-item" style="background-color: #FFF3E0;">
+                <div class="legend-color" style="background-color: #FFF3E0; border-color: #FF9800;"></div>
+                <span>Sistema Central (Core)</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Instrucciones para guardar
+        console.log("=== INSTRUCCIONES PARA GUARDAR EL DIAGRAMA ===");
+        console.log("1. Haz clic derecho en la página -> 'Guardar como' -> Guarda como HTML completo");
+        console.log("2. Para captura: Presiona F12 -> Ctrl+Shift+P -> Busca 'Screenshot' -> Captura full size");
+        console.log("3. Alternativa: Usa la herramienta de recorte (Windows: Win+Shift+S)");
+        
+        // Animación simple para destacar el sistema central
+        document.addEventListener('DOMContentLoaded', function() {
+            const centralSystem = document.querySelector('.central-system');
+            
+            // Pulsación suave
+            setInterval(() => {
+                centralSystem.style.boxShadow = '0 10px 20px rgba(13, 71, 161, 0.3)';
+                setTimeout(() => {
+                    centralSystem.style.boxShadow = '0 10px 25px rgba(13, 71, 161, 0.4)';
+                }, 1000);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

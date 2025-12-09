@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframes de Alta Fidelidad - CBT Gabino Barreda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(13, 71, 161, 0.25);
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .wireframes-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* Wireframe Desktop Completo */
+        .desktop-high-fi {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .desktop-header {
+            background-color: #0d47a1;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d47a1;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .logo-text h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .top-nav {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .top-nav-item {
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .top-nav-item:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .main-nav {
+            background-color: #1565c0;
+            padding: 0 30px;
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-item {
+            padding: 15px 0;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-item:hover {
+            color: #bbdefb;
+        }
+        
+        .nav-item.active {
+            color: #bbdefb;
+            border-bottom: 3px solid #bbdefb;
+        }
+        
+        .hero-section {
+            height: 300px;
+            background: linear-gradient(rgba(13, 71, 161, 0.85), rgba(13, 71, 161, 0.9)), url('https://via.placeholder.com/1200x300/0d47a1/ffffff?text=IMAGEN+INSTITUCIONAL+DESTACADA');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .hero-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 18px;
+            max-width: 600px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        
+        .hero-button {
+            background-color: white;
+            color: #0d47a1;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+        
+        .content-section {
+            flex: 1;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        .content-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid #0d47a1;
+            transition: all 0.3s;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e3f2fd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: #0d47a1;
+            font-size: 24px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+        
+        .card-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .card-button {
+            display: inline-block;
+            color: #0d47a1;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .card-button:hover {
+            border-bottom-color: #0d47a1;
+        }
+        
+        .desktop-footer {
+            background-color: #333;
+            color: white;
+            padding: 25px 30px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            font-size: 14px;
+        }
+        
+        .footer-section h4 {
+            color: #bbdefb;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            display: block;
+            margin-bottom: 8px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        /* Wireframe Mobile */
+        .mobile-high-fi {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-frame {
+            flex: 1;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            margin: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f9fa;
+        }
+        
+        .mobile-status-bar {
+            height: 40px;
+            background-color: #0d47a1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .mobile-header {
+            padding: 20px;
+            text-align: center;
+            background-color: white;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-header h3 {
+            color: #0d47a1;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .mobile-header p {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .mobile-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 10px;
+            background-color: white;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #666;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        
+        .mobile-nav-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            color: #0d47a1;
+            font-size: 18px;
+        }
+        
+        .mobile-nav-item.active .mobile-nav-icon {
+            background-color: #0d47a1;
+            color: white;
+        }
+        
+        .mobile-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+        
+        .mobile-news-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .mobile-news-img {
+            width: 80px;
+            height: 80px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 10px;
+            overflow: hidden;
+        }
+        
+        .mobile-news-content {
+            flex: 1;
+        }
+        
+        .mobile-news-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #0d47a1;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .mobile-news-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        .mobile-news-date {
+            font-size: 10px;
+            color: #999;
+        }
+        
+        .chatbot-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #0d47a1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(13, 71, 161, 0.3);
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 12px rgba(13, 71, 161, 0.3); }
+            50% { box-shadow: 0 4px 20px rgba(13, 71, 161, 0.5); }
+            100% { box-shadow: 0 4px 12px rgba(13, 71, 161, 0.3); }
+        }
+        
+        .caption {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background-color: #333;
+            color: white;
+            border-radius: 12px;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 1200px) {
+            .wireframes-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>WIREFRAMES DE ALTA FIDELIDAD</h1>
+            <p>Diseños detallados del sitio web - CBT No.1 "Gabino Barreda"</p>
+        </div>
+        
+        <div class="wireframes-container">
+            <!-- Wireframe Desktop -->
+            <div class="desktop-high-fi">
+                <div class="desktop-header">
+                    <div class="logo-container">
+                        <div class="logo-circle">CBT</div>
+                        <div class="logo-text">
+                            <h2>CBT No.1 "Gabino Barreda"</h2>
+                            <p>Sistema Educativo del Estado de México</p>
+                        </div>
+                    </div>
+                    <div class="top-nav">
+                        <div class="top-nav-item"><i class="fas fa-search"></i></div>
+                        <div class="top-nav-item"><i class="fas fa-user"></i></div>
+                        <div class="top-nav-item"><i class="fas fa-envelope"></i></div>
+                    </div>
+                </div>
+                
+                <div class="main-nav">
+                    <div class="nav-item active">INICIO</div>
+                    <div class="nav-item">CONÓCENOS</div>
+                    <div class="nav-item">OFERTA EDUCATIVA</div>
+                    <div class="nav-item">ADMISIONES</div>
+                    <div class="nav-item">NOTICIAS</div>
+                    <div class="nav-item">BIBLIOTECA</div>
+                    <div class="nav-item">CONTACTO</div>
+                </div>
+                
+                <div class="hero-section">
+                    <div class="hero-title">Educando con Calidad y Compromiso</div>
+                    <div class="hero-subtitle">Más de 30 años formando técnicos profesionales en el Estado de México</div>
+                    <button class="hero-button">CONOCE NUESTRAS CARRERAS</button>
+                </div>
+                
+                <div class="content-section">
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="card-title">Noticias Destacadas</div>
+                        <div class="card-content">Mantente informado sobre los últimos eventos, concursos y logros de nuestra institución.</div>
+                        <a href="#" class="card-button">Ver todas las noticias →</a>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="card-title">Calendario Escolar</div>
+                        <div class="card-content">Consulta fechas importantes, exámenes, vacaciones y eventos institucionales.</div>
+                        <a href="#" class="card-button">Ver calendario completo →</a>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="card-title">Chatbot Institucional</div>
+                        <div class="card-content">Resuelve tus dudas sobre trámites, horarios y requisitos de manera instantánea.</div>
+                        <a href="#" class="card-button">Iniciar conversación →</a>
+                    </div>
+                </div>
+                
+                <div class="desktop-footer">
+                    <div class="footer-section">
+                        <h4>CONTACTO</h4>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> La Concepción de los Baños, Ixtlahuaca</a>
+                        <a href="#"><i class="fas fa-phone"></i> (712) 161-8781</a>
+                        <a href="#"><i class="fas fa-envelope"></i> 15ECT0060X.CBT@edugem.gob.mx</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>ENLACES RÁPIDOS</h4>
+                        <a href="#">Admisiones 2025</a>
+                        <a href="#">Oferta Educativa</a>
+                        <a href="#">Biblioteca Virtual</a>
+                        <a href="#">Directorio Escolar</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>REDES SOCIALES</h4>
+                        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>HORARIOS</h4>
+                        <a href="#">Administración: 8:00 - 16:00 hrs</a>
+                        <a href="#">Biblioteca: 7:00 - 16:00 hrs</a>
+                        <a href="#">Clases: 7:00 - 14:00 hrs</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Wireframe Mobile -->
+            <div class="mobile-high-fi">
+                <div class="mobile-frame">
+                    <div class="mobile-status-bar">
+                        <span>9:41 AM</span>
+                        <span>
+                            <i class="fas fa-signal"></i>
+                            <i class="fas fa-wifi" style="margin-left: 8px;"></i>
+                            <i class="fas fa-battery-full" style="margin-left: 8px;"></i>
+                        </span>
+                    </div>
+                    
+                    <div class="mobile-header">
+                        <h3>CBT Gabino Barreda</h3>
+                        <p>Portal Institucional Móvil</p>
+                    </div>
+                    
+                    <div class="mobile-nav">
+                        <div class="mobile-nav-item active">
+                            <div class="mobile-nav-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <span>Inicio</span>
+                        </div>
+                        <div class="mobile-nav-item">
+                            <div class="mobile-nav-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <span>Carreras</span>
+                        </div>
+                        <div class="mobile-nav-item">
+                            <div class="mobile-nav-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <span>Calendario</span>
+                        </div>
+                        <div class="mobile-nav-item">
+                            <div class="mobile-nav-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span>Mi Cuenta</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-content">
+                        <div class="mobile-news-item">
+                            <div class="mobile-news-img">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="mobile-news-content">
+                                <div class="mobile-news-title">Concurso de Microempresa Fase de Zona</div>
+                                <div class="mobile-news-desc">Nuestros estudiantes obtienen primer lugar en el concurso de proyectos empresariales.</div>
+                                <div class="mobile-news-date">Publicado: 15 Oct 2025</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-news-item">
+                            <div class="mobile-news-img">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="mobile-news-content">
+                                <div class="mobile-news-title">Conferencia para Padres de Familia</div>
+                                <div class="mobile-news-desc">"Padres Ausentes, Hijos Complicados" - Impartida por el Lic. Enrique Ortega.</div>
+                                <div class="mobile-news-date">Publicado: 12 Oct 2025</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-news-item">
+                            <div class="mobile-news-img">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="mobile-news-content">
+                                <div class="mobile-news-title">Concurso de Baile Etapa Regional</div>
+                                <div class="mobile-news-desc">Nuestro equipo de baile gana primer lugar en el torneo regional de folclor.</div>
+                                <div class="mobile-news-date">Publicado: 10 Oct 2025</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-news-item">
+                            <div class="mobile-news-img">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div class="mobile-news-content">
+                                <div class="mobile-news-title">Concurso de Escolta 2025</div>
+                                <div class="mobile-news-desc">Participación destacada en el concurso de escolta a nivel municipal.</div>
+                                <div class="mobile-news-date">Publicado: 8 Oct 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chatbot-button">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                </div>
+                
+                <div class="caption">
+                    Diseño responsive optimizado para dispositivos móviles
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><i class="fas fa-paint-brush" style="margin-right: 10px;"></i> Wireframes de alta fidelidad creados en Figma - Representan el diseño visual final del sitio web</p>
+            <p style="margin-top: 10px; font-size: 14px; opacity: 0.9;">Incluyen colores institucionales, tipografía definida y componentes interactivos</p>
+        </div>
+    </div>
+    
+    <script>
+        // Interactividad para el wireframe móvil
+        document.querySelectorAll('.mobile-nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.mobile-nav-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Interactividad para el chatbot
+        const chatbotBtn = document.querySelector('.chatbot-button');
+        chatbotBtn.addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-comment"></i>';
+            this.style.backgroundColor = '#4CAF50';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-robot"></i>';
+                this.style.backgroundColor = '#0d47a1';
+            }, 1000);
+        });
+        
+        // Interactividad para las tarjetas del escritorio
+        document.querySelectorAll('.content-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.borderTopColor = '#FF9800';
+                setTimeout(() => {
+                    this.style.borderTopColor = '#0d47a1';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa del Sitio Jerárquico - CBT Gabino Barreda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: #0d47a1;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(13, 71, 161, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .site-map {
+            position: relative;
+            padding: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            min-height: 600px;
+        }
+        
+        /* Nivel 1 - Página Principal */
+        .level-1 {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .level-1 .node {
+            display: inline-block;
+            padding: 25px 40px;
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(13, 71, 161, 0.3);
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Nivel 2 - Secciones principales */
+        .level-2 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .level-2 .node {
+            flex: 1;
+            margin: 0 15px;
+            padding: 20px 25px;
+            background-color: #1565c0;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(21, 101, 192, 0.2);
+            position: relative;
+            z-index: 9;
+        }
+        
+        .level-2 .node h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .level-2 .node p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* Nivel 3 - Subsecciones */
+        .level-3 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .level-3 .section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .level-3 .section-title {
+            font-size: 16px;
+            color: #0d47a1;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0d47a1;
+        }
+        
+        .level-3 .subsections {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .level-3 .subsection {
+            padding: 12px 15px;
+            background-color: #e3f2fd;
+            border-radius: 6px;
+            border-left: 4px solid #2196F3;
+            font-size: 14px;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .level-3 .subsection:hover {
+            transform: translateX(5px);
+            background-color: #bbdefb;
+        }
+        
+        /* Líneas de conexión */
+        .connector {
+            position: absolute;
+            background-color: #0d47a1;
+            z-index: 1;
+        }
+        
+        .connector-vertical {
+            width: 4px;
+            height: 40px;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .connector-horizontal {
+            height: 4px;
+            width: 100%;
+            top: 280px;
+            left: 0;
+        }
+        
+        .branch-connector {
+            height: 4px;
+            width: 120px;
+            top: 280px;
+        }
+        
+        .branch-1 {
+            left: calc(16.66% - 60px);
+        }
+        
+        .branch-2 {
+            left: calc(50% - 60px);
+        }
+        
+        .branch-3 {
+            right: calc(16.66% - 60px);
+        }
+        
+        .sub-connector {
+            height: 20px;
+            width: 4px;
+            top: 320px;
+        }
+        
+        .sub-1 {
+            left: 16.66%;
+        }
+        
+        .sub-2 {
+            left: 50%;
+        }
+        
+        .sub-3 {
+            right: 16.66%;
+        }
+        
+        /* Flechas */
+        .arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            z-index: 2;
+        }
+        
+        .arrow-down {
+            top: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 15px 10px 0 10px;
+            border-color: #0d47a1 transparent transparent transparent;
+        }
+        
+        .arrow-left {
+            top: 280px;
+            left: calc(16.66% - 60px);
+            border-width: 10px 15px 10px 0;
+            border-color: transparent #0d47a1 transparent transparent;
+        }
+        
+        .arrow-right {
+            top: 280px;
+            right: calc(16.66% - 60px);
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent #0d47a1;
+        }
+        
+        .sub-arrow {
+            top: 340px;
+            border-width: 0 10px 15px 10px;
+            border-color: transparent transparent #0d47a1 transparent;
+        }
+        
+        .sub-arrow-1 {
+            left: 16.66%;
+            transform: translateX(-50%);
+        }
+        
+        .sub-arrow-2 {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .sub-arrow-3 {
+            right: 16.66%;
+            transform: translateX(50%);
+        }
+        
+        /* Leyenda */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .legend-text {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 1024px) {
+            .level-2 {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .level-3 {
+                flex-direction: column;
+            }
+            
+            .connector, .arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MAPA DEL SITIO JERÁRQUICO</h1>
+            <p>CBT No.1 "Gabino Barreda" - Estructura de navegación del sitio web</p>
+        </div>
+        
+        <div class="site-map">
+            <!-- Nivel 1: Página Principal -->
+            <div class="level-1">
+                <div class="node">
+                    PÁGINA PRINCIPAL<br>
+                    <span style="font-size: 16px; font-weight: normal;">index.html - Punto de entrada</span>
+                </div>
+            </div>
+            
+            <!-- Líneas de conexión nivel 1-2 -->
+            <div class="connector connector-vertical"></div>
+            <div class="arrow arrow-down"></div>
+            
+            <!-- Nivel 2: Secciones principales -->
+            <div class="level-2">
+                <div class="node">
+                    <h3>CONÓCENOS</h3>
+                    <p>Información institucional</p>
+                </div>
+                
+                <div class="node">
+                    <h3>OFERTA EDUCATIVA</h3>
+                    <p>Carreras técnicas</p>
+                </div>
+                
+                <div class="node">
+                    <h3>SERVICIOS</h3>
+                    <p>Recursos y contacto</p>
+                </div>
+            </div>
+            
+            <!-- Líneas de conexión nivel 2-3 -->
+            <div class="connector connector-horizontal"></div>
+            <div class="connector branch-connector branch-1"></div>
+            <div class="connector branch-connector branch-2"></div>
+            <div class="connector branch-connector branch-3"></div>
+            <div class="arrow arrow-left"></div>
+            <div class="arrow arrow-right"></div>
+            
+            <!-- Flechas a subsecciones -->
+            <div class="connector sub-connector sub-1"></div>
+            <div class="connector sub-connector sub-2"></div>
+            <div class="connector sub-connector sub-3"></div>
+            <div class="arrow sub-arrow sub-arrow-1"></div>
+            <div class="arrow sub-arrow sub-arrow-2"></div>
+            <div class="arrow sub-arrow sub-arrow-3"></div>
+            
+            <!-- Nivel 3: Subsecciones -->
+            <div class="level-3">
+                <!-- Sección Conócenos -->
+                <div class="section">
+                    <div class="section-title">SECCIÓN: CONÓCENOS</div>
+                    <div class="subsections">
+                        <div class="subsection">Historia de la Institución</div>
+                        <div class="subsection">Misión y Visión</div>
+                        <div class="subsection">Valores Institucionales</div>
+                        <div class="subsection">Directorio Escolar</div>
+                        <div class="subsection">Organigrama</div>
+                    </div>
+                </div>
+                
+                <!-- Sección Oferta Educativa -->
+                <div class="section">
+                    <div class="section-title">SECCIÓN: OFERTA EDUCATIVA</div>
+                    <div class="subsections">
+                        <div class="subsection">Técnico en Mecatrónica</div>
+                        <div class="subsection">Técnico en Informática</div>
+                        <div class="subsection">Técnico en Contabilidad</div>
+                        <div class="subsection">Planes de Estudio</div>
+                        <div class="subsection">Requisitos de Ingreso</div>
+                    </div>
+                </div>
+                
+                <!-- Sección Servicios -->
+                <div class="section">
+                    <div class="section-title">SECCIÓN: SERVICIOS</div>
+                    <div class="subsections">
+                        <div class="subsection">Admisiones</div>
+                        <div class="subsection">Noticias y Eventos</div>
+                        <div class="subsection">Biblioteca Virtual</div>
+                        <div class="subsection">Contacto y Ubicación</div>
+                        <div class="subsection">Chatbot Institucional</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Leyenda -->
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #0d47a1;"></div>
+                    <div class="legend-text">Nivel 1 - Página Principal</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #1565c0;"></div>
+                    <div class="legend-text">Nivel 2 - Secciones Principales</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #e3f2fd; border: 1px solid #2196F3;"></div>
+                    <div class="legend-text">Nivel 3 - Subsecciones</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>Mapa del sitio diseñado para el CBT No.1 "Gabino Barreda" - Estructura jerárquica de 3 niveles</p>
+                <p>Total de páginas: 15 subsecciones organizadas en 3 categorías principales</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Instrucciones para guardar
+        console.log("=== Mapa del Sitio Jerárquico ===");
+        console.log("Instrucciones para guardar:");
+        console.log("1. Usa Ctrl+P para imprimir como PDF");
+        console.log("2. O usa la herramienta de recorte (Windows: Win+Shift+S)");
+        console.log("3. Guarda como: Imagen_4.2.1_Mapa_Sitio.png");
+    </script>
+</body>
+</html>

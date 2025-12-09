@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriz FODA - CBT No.1 Gabino Barreda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #0d47a1;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .foda-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .foda-box {
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .foda-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .foda-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+        }
+        
+        .foda-list {
+            list-style-type: none;
+        }
+        
+        .foda-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-size: 16px;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .foda-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+            line-height: 1;
+        }
+        
+        /* Colores específicos para cada cuadrante */
+        .fortalezas {
+            background-color: #E8F5E9;
+            border-top: 5px solid #4CAF50;
+        }
+        
+        .fortalezas .foda-title {
+            color: #2E7D32;
+            border-bottom-color: #4CAF50;
+        }
+        
+        .fortalezas .foda-list li:before {
+            color: #4CAF50;
+        }
+        
+        .debilidades {
+            background-color: #FFF3E0;
+            border-top: 5px solid #FF9800;
+        }
+        
+        .debilidades .foda-title {
+            color: #EF6C00;
+            border-bottom-color: #FF9800;
+        }
+        
+        .debilidades .foda-list li:before {
+            color: #FF9800;
+        }
+        
+        .oportunidades {
+            background-color: #E3F2FD;
+            border-top: 5px solid #2196F3;
+        }
+        
+        .oportunidades .foda-title {
+            color: #1565C0;
+            border-bottom-color: #2196F3;
+        }
+        
+        .oportunidades .foda-list li:before {
+            color: #2196F3;
+        }
+        
+        .amenazas {
+            background-color: #FFEBEE;
+            border-top: 5px solid #F44336;
+        }
+        
+        .amenazas .foda-title {
+            color: #C62828;
+            border-bottom-color: #F44336;
+        }
+        
+        .amenazas .foda-list li:before {
+            color: #F44336;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .foda-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MATRIZ FODA</h1>
+            <p>Análisis de Comunicación Institucional - CBT No.1 "Gabino Barreda"</p>
+        </div>
+        
+        <div class="foda-container">
+            <!-- Fortalezas -->
+            <div class="foda-box fortalezas">
+                <div class="foda-title">FORTALEZAS</div>
+                <ul class="foda-list">
+                    <li>Personal docente comprometido con la institución</li>
+                    <li>Reconocimiento de la comunidad por calidad educativa</li>
+                    <li>Infraestructura básica tecnológica disponible</li>
+                    <li>Alta demanda estudiantil en la región</li>
+                    <li>Tradición educativa de más de 30 años en la comunidad</li>
+                    <li>Ubicación estratégica en el municipio de Ixtlahuaca</li>
+                </ul>
+            </div>
+            
+            <!-- Debilidades -->
+            <div class="foda-box debilidades">
+                <div class="foda-title">DEBILIDADES</div>
+                <ul class="foda-list">
+                    <li>Ausencia de portal web oficial institucional</li>
+                    <li>Comunicación fragmentada en redes sociales no oficiales</li>
+                    <li>Dependencia de métodos tradicionales (circulares impresas)</li>
+                    <li>Falta de capacitación digital del personal administrativo</li>
+                    <li>Procesos de comunicación lentos y descentralizados</li>
+                    <li>Imagen institucional digital inconsistente</li>
+                </ul>
+            </div>
+            
+            <!-- Oportunidades -->
+            <div class="foda-box oportunidades">
+                <div class="foda-title">OPORTUNIDADES</div>
+                <ul class="foda-list">
+                    <li>Creciente digitalización de la educación post-pandemia</li>
+                    <li>Disponibilidad de tecnologías open-source (WordPress, Bootstrap)</li>
+                    <li>Mayor uso de dispositivos móviles en la comunidad estudiantil</li>
+                    <li>Programas gubernamentales de apoyo a la digitalización educativa</li>
+                    <li>Demanda de padres por acceso a información en tiempo real</li>
+                    <li>Tendencia mundial hacia la educación digital inclusiva</li>
+                </ul>
+            </div>
+            
+            <!-- Amenazas -->
+            <div class="foda-box amenazas">
+                <div class="foda-title">AMENAZAS</div>
+                <ul class="foda-list">
+                    <li>Competencia de instituciones con mejor presencia digital</li>
+                    <li>Resistencia al cambio por parte de personal administrativo</li>
+                    <li>Limitaciones presupuestarias para mantenimiento a largo plazo</li>
+                    <li>Riesgos de seguridad informática en plataformas web</li>
+                    <li>Velocidad de obsolescencia tecnológica acelerada</li>
+                    <li>Brecha digital en algunos sectores de la comunidad</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #E8F5E9; border: 2px solid #4CAF50;"></div>
+                <span>Fortalezas (Internas - Positivas)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #FFF3E0; border: 2px solid #FF9800;"></div>
+                <span>Debilidades (Internas - Negativas)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #E3F2FD; border: 2px solid #2196F3;"></div>
+                <span>Oportunidades (Externas - Positivas)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #FFEBEE; border: 2px solid #F44336;"></div>
+                <span>Amenazas (Externas - Negativas)</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>CBT No.1 "Gabino Barreda" - Ixtlahuaca, Estado de México | Análisis realizado en septiembre de 2025</p>
+        </div>
+    </div>
+    
+    <script>
+        // Para capturar como imagen (instrucciones)
+        console.log("Para guardar como imagen:");
+        console.log("1. Haz clic derecho en la página");
+        console.log("2. Selecciona 'Capturar pantalla' o usa la herramienta de recorte");
+        console.log("3. Guarda como PNG o JPG");
+        
+        // Opcional: agregar funcionalidad para imprimir
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                alert("Recomendación: Usa 'Guardar como PDF' para mejor calidad");
+            }
+        });
+    </script>
+</body>
+</html>

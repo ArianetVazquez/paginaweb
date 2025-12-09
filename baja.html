@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframes de Baja Fidelidad - CBT Gabino Barreda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #e8e8e8;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .wireframes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .wireframe {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 550px;
+            border: 2px dashed #666;
+        }
+        
+        .wireframe-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        
+        /* Wireframe Desktop */
+        .desktop-wireframe {
+            position: relative;
+        }
+        
+        .desktop-header {
+            height: 80px;
+            border: 2px solid #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            background-color: #f0f0f0;
+        }
+        
+        .logo-area {
+            width: 150px;
+            height: 50px;
+            border: 1px solid #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+        
+        .nav-area {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-item {
+            width: 80px;
+            height: 30px;
+            border: 1px solid #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            font-size: 12px;
+        }
+        
+        .hero-section {
+            height: 200px;
+            border: 2px solid #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .content-box {
+            height: 120px;
+            border: 1px solid #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .footer-area {
+            height: 100px;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            font-size: 14px;
+        }
+        
+        /* Wireframe Mobile */
+        .mobile-wireframe {
+            position: relative;
+        }
+        
+        .mobile-frame {
+            width: 320px;
+            margin: 0 auto;
+            border: 3px solid #333;
+            border-radius: 20px;
+            padding: 15px;
+            background-color: white;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .mobile-header {
+            height: 60px;
+            border: 1px solid #666;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .mobile-nav {
+            height: 40px;
+            border: 1px solid #666;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            font-style: italic;
+        }
+        
+        .mobile-content {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #666;
+            padding: 10px;
+            background-color: white;
+        }
+        
+        .mobile-item {
+            height: 70px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            display: flex;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        
+        .mobile-item-img {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #999;
+            margin-right: 10px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+        
+        .mobile-item-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .mobile-item-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .mobile-item-desc {
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .mobile-footer {
+            height: 50px;
+            border: 1px solid #666;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            font-size: 12px;
+        }
+        
+        /* Wireframe Chatbot */
+        .chatbot-wireframe {
+            max-width: 400px;
+            margin: 30px auto 0;
+            padding: 15px;
+            border: 2px dashed #333;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .chatbot-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .chatbot-window {
+            height: 200px;
+            border: 1px solid #666;
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 15px;
+            overflow-y: auto;
+        }
+        
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            max-width: 80%;
+        }
+        
+        .chat-bot {
+            background-color: #e3f2fd;
+            border: 1px solid #bbdefb;
+            margin-right: auto;
+        }
+        
+        .chat-user {
+            background-color: #f3e5f5;
+            border: 1px solid #e1bee7;
+            margin-left: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input-box {
+            flex: 1;
+            height: 40px;
+            border: 1px solid #666;
+            padding: 0 10px;
+            background-color: white;
+        }
+        
+        .chat-send-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #666;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .caption {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+        }
+        
+        .annotation {
+            position: absolute;
+            font-size: 10px;
+            color: #999;
+            background-color: white;
+            padding: 2px 5px;
+            border: 1px dashed #ccc;
+            border-radius: 3px;
+        }
+        
+        .annotation-1 {
+            top: 120px;
+            left: 20px;
+        }
+        
+        .annotation-2 {
+            top: 350px;
+            right: 20px;
+        }
+        
+        .annotation-3 {
+            bottom: 50px;
+            left: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            .wireframes-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>WIREFRAMES DE BAJA FIDELIDAD</h1>
+            <p>Bocetos iniciales del sitio web - CBT No.1 "Gabino Barreda"</p>
+        </div>
+        
+        <div class="wireframes-container">
+            <!-- Wireframe Desktop -->
+            <div class="wireframe desktop-wireframe">
+                <div class="wireframe-title">VISTA DE ESCRITORIO - PÁGINA DE INICIO</div>
+                
+                <div class="desktop-header">
+                    <div class="logo-area">
+                        LOGO CBT
+                    </div>
+                    <div class="nav-area">
+                        <div class="nav-item">INICIO</div>
+                        <div class="nav-item">CONÓCENOS</div>
+                        <div class="nav-item">CARRERAS</div>
+                        <div class="nav-item">ADMISIONES</div>
+                        <div class="nav-item">CONTACTO</div>
+                    </div>
+                </div>
+                
+                <div class="hero-section">
+                    SLIDER PRINCIPAL<br>
+                    Imágenes destacadas
+                </div>
+                
+                <div class="content-grid">
+                    <div class="content-box">
+                        NOTICIAS<br>DESTACADAS
+                    </div>
+                    <div class="content-box">
+                        EVENTOS<br>PRÓXIMOS
+                    </div>
+                    <div class="content-box">
+                        ACCESOS<br>RÁPIDOS
+                    </div>
+                </div>
+                
+                <div class="footer-area">
+                    PIE DE PÁGINA - Contacto, redes sociales, enlaces legales
+                </div>
+                
+                <div class="annotation annotation-1">Header con logo y navegación</div>
+                <div class="annotation annotation-2">Contenido principal en grid</div>
+                <div class="annotation annotation-3">Footer informativo</div>
+                
+                <div class="caption">
+                    Boceto inicial para vista de escritorio (1024px+)
+                </div>
+            </div>
+            
+            <!-- Wireframe Mobile -->
+            <div class="wireframe mobile-wireframe">
+                <div class="wireframe-title">VISTA MÓVIL - PÁGINA DE INICIO</div>
+                
+                <div class="mobile-frame">
+                    <div class="mobile-header">
+                        CBT GABINO BARREDA
+                    </div>
+                    
+                    <div class="mobile-nav">
+                        MENÚ HAMBURGUESA ≡
+                    </div>
+                    
+                    <div class="mobile-content">
+                        <div class="mobile-item">
+                            <div class="mobile-item-img">
+                                IMG
+                            </div>
+                            <div class="mobile-item-content">
+                                <div class="mobile-item-title">NOTICIA DESTACADA 1</div>
+                                <div class="mobile-item-desc">Breve descripción de la noticia importante...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-item">
+                            <div class="mobile-item-img">
+                                IMG
+                            </div>
+                            <div class="mobile-item-content">
+                                <div class="mobile-item-title">NOTICIA DESTACADA 2</div>
+                                <div class="mobile-item-desc">Breve descripción de la noticia importante...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-item">
+                            <div class="mobile-item-img">
+                                IMG
+                            </div>
+                            <div class="mobile-item-content">
+                                <div class="mobile-item-title">EVENTO PRÓXIMO</div>
+                                <div class="mobile-item-desc">Fecha y descripción del evento...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-item">
+                            <div class="mobile-item-img">
+                                IMG
+                            </div>
+                            <div class="mobile-item-content">
+                                <div class="mobile-item-title">ENLACE RÁPIDO</div>
+                                <div class="mobile-item-desc">Acceso a sección importante...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-footer">
+                        CHATBOT - CONTACTO - MAPA
+                    </div>
+                </div>
+                
+                <div class="caption">
+                    Boceto para vista móvil (menú hamburguesa, contenido apilado)
+                </div>
+            </div>
+            
+            <!-- Wireframe Chatbot -->
+            <div class="chatbot-wireframe">
+                <div class="chatbot-title">WIREFRAME CHATBOT INSTITUCIONAL</div>
+                
+                <div class="chatbot-window">
+                    <div class="chat-message chat-bot">
+                        ¡Hola! Soy el asistente virtual del CBT Gabino Barreda. ¿En qué puedo ayudarte?
+                    </div>
+                    <div class="chat-message chat-user">
+                        ¿Cuáles son los requisitos de inscripción?
+                    </div>
+                    <div class="chat-message chat-bot">
+                        Los requisitos son: Certificado de secundaria, acta de nacimiento, CURP, 6 fotografías...
+                    </div>
+                    <div class="chat-message chat-user">
+                        ¿Qué carreras ofrecen?
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <div class="chat-input-box">Escribe tu pregunta aquí...</div>
+                    <div class="chat-send-btn">➤</div>
+                </div>
+                
+                <div class="caption">
+                    Wireframe del chatbot para consultas frecuentes
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Wireframes de baja fidelidad creados durante la fase de diseño conceptual</p>
+            <p>Estos bocetos guiaron la estructura inicial del sitio web antes del desarrollo</p>
+        </div>
+    </div>
+    
+    <script>
+        // Simular interacción en el chatbot
+        const chatWindow = document.querySelector('.chatbot-window');
+        const chatInput = document.querySelector('.chat-input-box');
+        const sendBtn = document.querySelector('.chat-send-btn');
+        
+        sendBtn.addEventListener('click', function() {
+            if (chatInput.textContent.trim() !== '') {
+                const userMessage = document.createElement('div');
+                userMessage.className = 'chat-message chat-user';
+                userMessage.textContent = chatInput.textContent;
+                chatWindow.appendChild(userMessage);
+                
+                // Simular respuesta del bot
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'chat-message chat-bot';
+                    botMessage.textContent = 'Gracias por tu consulta. Te redirigiré a la sección correspondiente.';
+                    chatWindow.appendChild(botMessage);
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                }, 500);
+                
+                chatInput.textContent = '';
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+        });
+        
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
